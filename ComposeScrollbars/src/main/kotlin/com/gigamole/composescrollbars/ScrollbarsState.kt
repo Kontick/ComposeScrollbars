@@ -354,7 +354,8 @@ class ScrollbarsState(
                         is ScrollbarsScrollType.Lazy.List -> {
                             val lazyListState = scrollType.state
                             val layoutInfo = lazyListState.layoutInfo
-                            val firstVisibleItem = layoutInfo.visibleItemsInfo.firstOrNull()
+                            val firstVisibleItem = layoutInfo.visibleItemsInfo
+                                .firstOrNull { !it.key.toString().startsWith("stickyHeader") }
 
                             when (scrollType) {
                                 is ScrollbarsScrollType.Lazy.List.Dynamic -> {
@@ -525,7 +526,8 @@ class ScrollbarsState(
                         is ScrollbarsScrollType.Lazy.Grid -> {
                             val lazyGridState = scrollType.state
                             val layoutInfo = lazyGridState.layoutInfo
-                            val firstVisibleItem = layoutInfo.visibleItemsInfo.firstOrNull()
+                            val firstVisibleItem = layoutInfo.visibleItemsInfo
+                                .firstOrNull { !it.key.toString().startsWith("stickyHeader") }
 
                             when (scrollType) {
                                 is ScrollbarsScrollType.Lazy.Grid.Dynamic -> {
